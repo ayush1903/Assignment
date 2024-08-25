@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  backend:
+    build: ./course_api
+    image: abhaddouria/backend:latest
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+  frontend:
+    build: ./course-frontend
+    image: abhaddouria/frontend:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
